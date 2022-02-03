@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+ <!-- Estate View Action -->
+    <record id="estate_view_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">tree,kanban,form,graph,calendar,pivot</field> 
+        <!-- use domain -->
+        <!-- <field name="domain">[('gender','=','male')]</field> -->
+
+        <!-- use context -->
+        <field name="context">{'default_gender':'male','search_default_male':1}</field>
+        <field name="context">{'default_description':'This is a Estate Model properties'}</field>
+    </record>
+
+    <record id="estate_view_garden" model="ir.actions.act_window">
+        <field name="name">Garden True</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">tree,kanban,form,graph,calendar,pivot</field> 
+        <!-- use domain -->
+        <!-- <field name="domain">[('gender','=','male')]</field> -->
+
+        <!-- use context -->
+        <field name="context">{'search_default_garden_true':1}</field>
+    </record>
+
+
+
+
+<!-- My property search current user show-->
+
+    <record id="estate_my_property_action" model="ir.actions.act_window">
+        <field name="name">My Property</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">[('state','=','cancel')]</field> -->
+              
+        <!-- <field name="context">{'search_default_my_property_search':1}</field> -->
+        <field name="context">{'search_default_my_property_search':1,'search_default_garden':1,'is_my_property':True}</field>
+
+        
+    </record>
+
+    <!-- Property tag action -->
+    <record id="property_tag_action" model="ir.actions.act_window">
+        <field name="name">Property Tag</field>
+        <field name="res_model">property.tag</field>
+        <field name="view_mode">tree,form</field>  
+    </record>
+
+
+
+    
+    <!-- Property offer action for show only accepted offers from kanban view button click -->
+    <record id="estate_property_accepted_offer_action" model="ir.actions.act_window">
+        <field name="name">estate.property.accepted.offer.action</field>
+        <field name="res_model">estate.property.offer</field>
+        <field name="domain">[('status','=','accepted'), ('property_id', '=', active_id)]</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+
+
+
+    <!-- property offer Action -->
+    <record id="property_offer_action" model="ir.actions.act_window">
+        <field name="name">Property Offer</field>
+        <field name="res_model">estate.property.offer</field>
+        <field name="view_mode">tree,form</field>  
+    </record>
+
+
+
+    <!-- Property type view action -->
+    <record id="estate_type_view_action" model="ir.actions.act_window">
+        <field name="name">Property Type</field>
+        <field name="res_model">property.type</field>
+        <field name="view_mode">tree,form</field>  
+    </record>
+
+    <!-- Action menu Traditional Inheritance Model-->
+    <record id="Test_model_action" model="ir.actions.act_window">
+        <field name="name">Test_Model</field>
+        <field name="res_model">test.model</field>
+        <field name="view_mode">tree,form</field>  
+    </record>
+    <!-- Action menu Delegation Inheritance Model-->
+    <record id="Test_model_view_action" model="ir.actions.act_window">
+        <field name="name">Test_Model_view</field>
+        <field name="res_model">test.view</field>
+        <field name="view_mode">tree,form</field>  
+    </record>
+
+
+
+<!-- MENU -->
+    <menuitem id="estate_root" name="Real Estate">
+        <menuitem id="estate_sub_menu" name="Advertisement">
+            <menuitem id="estate_view" action="estate_view_action"/>
+            <menuitem id="estate_offer_view" action="property_offer_action"/>
+        </menuitem>
+    </menuitem>
+
+
+
+
+<!-- Sub MENU -->
+    <menuitem id="estate_property_type_menu" parent="estate_root" name="Setting"/>
+    <menuitem id="estate_property_type_sub" parent="estate_property_type_menu" action="estate_type_view_action"/>
+    <menuitem id="estate_property_tag_menu" parent="estate_property_type_menu" action="property_tag_action"/>
+    <menuitem id="estate_property_test_model" parent="estate_property_type_menu" action="Test_model_action"/>
+    <menuitem id="estate_property_test_model_view" parent="estate_property_type_menu" action="Test_model_view_action"/>
+    <menuitem id="estate_my_property" parent="estate_property_type_menu" action="estate_my_property_action"/>
+    <menuitem id="estate_my_property_garden" parent="estate_property_type_menu" action="estate_view_garden"/>
+    
+</odoo>
+
+
