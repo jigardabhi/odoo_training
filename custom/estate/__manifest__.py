@@ -1,7 +1,10 @@
 {
     'name':"Real Estate",
     'description':'This is my first app',
-    'depends':['base'],
+    'depends':['base',
+    'mail',
+    'website'
+    ],
     'application':True,
     'data':[
         'security/ir.model.access.csv',
