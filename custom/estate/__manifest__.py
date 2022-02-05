@@ -1,7 +1,10 @@
 {
     'name':"Real Estate",
     'description':'This is my first app',
-    'depends':['base'],
+    'depends':['base',
+    'mail',
+    'website'
+    ],
     'application':True,
     'data':[
         'security/ir.model.access.csv',
@@ -10,7 +13,7 @@
         'views/estate_property_menus.xml',
         'wizard/offer_wizard_view.xml',
         'views/temlates.xml',      
-  
+
     ],
     'category':'Sales',
 }

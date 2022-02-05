@@ -20,3 +20,29 @@ class OpenAcademy(http.Controller):
         courses = request.env['estate.property'].search([('state', '=', 'cancel')])
         print ("courses ::: ", courses)
         return request.render('estate.hello_user', { 'user': request.env.user, 'courses': courses })
+
+
+
+
+    def hello_template_user(self, **kw):
+        courses = request.env['estate.property'].search([('state', '=', 'cancel')])
+        print ("courses ::: ", courses)
+        return request.render('estate.hello_user', { 'user': request.env.user, 'courses': courses }) 
+        return request.render('estate.hello_user', { 'user': request.env.user, 'courses': courses })
+
+    @http.route(['/estate', '/course/static/<string:is_static>'], auth="public", website=True)
+    def courses(self, is_static=False, **kw):
+        if is_static:
+            return request.render('open_academy.courses_static', {
+                'courses': request.env['course.course'].sudo().search([], limit=8)
+            })
+        return request.render('open_academy.courses', {
+                'courses': request.env['course.course'].sudo().search([], limit=8)
+            })
+
+    @http.route(['/course/<model("course.course"):course>', '/course/<string:is_static>'], auth="public", website=True)
+    def course_details(self, course=False, **kw):
+        if course:
+            return request.render('open_academy.course_details', {
+                'course': course,
+            })
